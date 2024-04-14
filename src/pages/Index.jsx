@@ -1,5 +1,5 @@
-import { Box, VStack, Heading, Text, Image, Link, Flex, Spacer } from "@chakra-ui/react";
-import { FaMusic } from "react-icons/fa";
+import { Box, VStack, Heading, Text, Image, Link, Flex, Spacer, IconButton, RangeSlider, RangeSliderTrack, RangeSliderFilledTrack, RangeSliderThumb } from "@chakra-ui/react";
+import { FaMusic, FaBackward, FaPlay, FaForward, FaVolumeMute } from "react-icons/fa";
 
 const Index = () => {
   return (
@@ -18,12 +18,43 @@ const Index = () => {
 
       {/* Main Content */}
       <VStack spacing={8} py={12} px={8}>
-        <Box>
-          <Image src="https://images.unsplash.com/photo-1517343155053-3bc076e687b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMHBsYXllciUyMGNvbnRyb2xzfGVufDB8fHx8MTcxMzA3MDc5M3ww&ixlib=rb-4.0.3&q=80&w=1080" alt="Music Player" w="300px" rounded="md" shadow="md" />
-          <Text mt={4} fontSize="xl" fontWeight="bold">
-            Now Playing: Song Title
-          </Text>
-        </Box>
+        <Flex direction={["column", "row"]} align="center" justify="center" w="full">
+          <Box mr={[0, 8]} mb={[8, 0]}>
+            <Image src="https://via.placeholder.com/150" alt="Album Art" rounded="md" shadow="md" />
+            <Text mt={2} fontWeight="bold">
+              Track Name
+            </Text>
+            <Text fontSize="sm" color="gray.400">
+              Artist Name
+            </Text>
+          </Box>
+          <Box>
+            <Flex mb={4}>
+              <IconButton icon={<FaBackward />} bg="gray.700" rounded="full" mx={2} _hover={{ bg: "gray.600" }} _focus={{ boxShadow: "outline" }} />
+              <IconButton icon={<FaPlay />} bg="blue.500" rounded="full" size="lg" _hover={{ bg: "blue.600" }} _focus={{ boxShadow: "outline" }} />
+              <IconButton icon={<FaForward />} bg="gray.700" rounded="full" mx={2} _hover={{ bg: "gray.600" }} _focus={{ boxShadow: "outline" }} />
+            </Flex>
+
+            <RangeSlider aria-label={["min", "max"]} defaultValue={[10, 30]} mb={6}>
+              <RangeSliderTrack bg="gray.700">
+                <RangeSliderFilledTrack bg="blue.500" />
+              </RangeSliderTrack>
+              <RangeSliderThumb index={0} />
+              <RangeSliderThumb index={1} />
+            </RangeSlider>
+
+            <Flex align="center">
+              <IconButton icon={<FaVolumeMute />} bg="gray.700" rounded="full" mr={4} _hover={{ bg: "gray.600" }} _focus={{ boxShadow: "outline" }} />
+              <RangeSlider aria-label={["min", "max"]} defaultValue={[10, 30]} width="150px">
+                <RangeSliderTrack bg="gray.700">
+                  <RangeSliderFilledTrack bg="blue.500" />
+                </RangeSliderTrack>
+                <RangeSliderThumb index={0} />
+                <RangeSliderThumb index={1} />
+              </RangeSlider>
+            </Flex>
+          </Box>
+        </Flex>
 
         <Box>
           <Heading size="md" mb={4}>
